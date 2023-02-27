@@ -137,7 +137,7 @@ bot.on("msg", async (ctx) => {
       } else {
         console.log(`An error occured:\n${error}`);
         await ctx.reply(
-          `*An error occurred. Are you sure you sent a valid reddit link?*\n_Error: ${error.message}_`,
+          `*An error occurred. Are you sure you sent a valid Tiktok link?*\n_Error: ${error.message}_`,
           { parse_mode: "Markdown", reply_to_message_id: ctx.msg.message_id }
         );
         return;
