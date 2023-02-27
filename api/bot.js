@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { Bot, GrammyError, HttpError } = require("grammy");
+const { Bot, webhookCallback, GrammyError, HttpError } = require("grammy");
 const tiktok = require("tiktok-scraper-without-watermark");
 
 // Bot
@@ -83,6 +83,20 @@ bot.on("msg", async (ctx) => {
       });
     } catch (error) {
       if (error instanceof GrammyError) {
+        if (error.message.includes("Forbidden: bot was blocked by the user")) {
+          console.log("Bot was blocked by the user");
+        } else if (error.message.includes("Call to 'sendVideo' failed!")) {
+          console.log("Error sending video");
+          await ctx.reply(`*Error contacting Tiktok.*`, {
+            parse_mode: "Markdown",
+            reply_to_message_id: ctx.msg.message_id,
+          });
+        } else {
+          await ctx.reply(`*An error occurred: ${error.message}*`, {
+            parse_mode: "Markdown",
+            reply_to_message_id: ctx.msg.message_id,
+          });
+        }
         console.log(`Error sending message: ${error.message}`);
         return;
       } else {
@@ -124,4 +138,4 @@ bot.catch((err) => {
 
 // Run
 
-bot.start();
+export default webhookCallback(bot, "http");
