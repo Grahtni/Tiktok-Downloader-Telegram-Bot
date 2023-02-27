@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "grammy": "^1.14.1",
+    "tiktok-scraper-without-watermark": "github:MRHRTZ/Tiktok-Scraper-Without-Watermark"
+  }
+}
