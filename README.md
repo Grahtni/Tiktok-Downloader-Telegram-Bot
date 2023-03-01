@@ -1,4 +1,4 @@
-# Tiktok Telegram Bot
+# Tiktok Downloader Telegram Bot
 
 Download Tiktoks in Telegram!
 
